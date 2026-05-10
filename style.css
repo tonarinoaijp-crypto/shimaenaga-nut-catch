@@ -247,7 +247,8 @@ h1 {
 
 .guide-content.hidden,
 .difficulty-content.hidden,
-.guide-page.hidden {
+.guide-page.hidden,
+.result-guide-button.hidden {
   display: none;
 }
 
@@ -449,6 +450,12 @@ h1 {
 .sub-button:disabled {
   opacity: 0.36;
   cursor: default;
+}
+
+.result-guide-button {
+  display: block;
+  width: min(220px, 100%);
+  margin: 10px auto 0;
 }
 
 .difficulty-select {

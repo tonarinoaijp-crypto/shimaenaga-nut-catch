@@ -16,6 +16,7 @@ const guidePages = document.querySelectorAll(".guide-page");
 const guidePrevButton = document.getElementById("guidePrevButton");
 const guideNextButton = document.getElementById("guideNextButton");
 const startButton = document.getElementById("startButton");
+const resultGuideButton = document.getElementById("resultGuideButton");
 const leftButton = document.getElementById("leftButton");
 const rightButton = document.getElementById("rightButton");
 const difficultyButtons = document.querySelectorAll(".difficulty-button");
@@ -247,6 +248,7 @@ function showGuideScreen() {
   messagePanel.classList.remove("result", "hidden");
   guideContent.classList.remove("hidden");
   difficultyContent.classList.add("hidden");
+  resultGuideButton.classList.add("hidden");
   guidePageIndex = 0;
   updateGuidePage();
 }
@@ -258,6 +260,7 @@ function showDifficultyScreen() {
   messagePanel.classList.remove("result", "hidden");
   guideContent.classList.add("hidden");
   difficultyContent.classList.remove("hidden");
+  resultGuideButton.classList.add("hidden");
   updateDifficultyButtons();
 }
 
@@ -469,6 +472,7 @@ function endGame() {
   messagePanel.classList.add("result");
   guideContent.classList.add("hidden");
   difficultyContent.classList.remove("hidden");
+  resultGuideButton.classList.remove("hidden");
   messagePanel.classList.remove("hidden");
 }
 
@@ -724,6 +728,7 @@ difficultyButtons.forEach((button) => {
 
 guidePrevButton.addEventListener("click", goToPreviousGuidePage);
 guideNextButton.addEventListener("click", goToNextGuidePage);
+resultGuideButton.addEventListener("click", showGuideScreen);
 startButton.addEventListener("click", startGame);
 
 // 画面サイズが変わっても、シマエナガが外に出ないようにします。
