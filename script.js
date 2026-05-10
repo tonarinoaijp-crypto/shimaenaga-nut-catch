@@ -12,6 +12,8 @@ const messageTitle = document.getElementById("messageTitle");
 const messageText = document.getElementById("messageText");
 const guideContent = document.getElementById("guideContent");
 const difficultyContent = document.getElementById("difficultyContent");
+const guidePages = document.querySelectorAll(".guide-page");
+const guidePrevButton = document.getElementById("guidePrevButton");
 const guideNextButton = document.getElementById("guideNextButton");
 const startButton = document.getElementById("startButton");
 const leftButton = document.getElementById("leftButton");
@@ -62,6 +64,21 @@ const NUT_WEIGHTS = [
   { type: "fluffy", weight: 6 }
 ];
 
+const GUIDE_PAGES = [
+  {
+    title: "遊び方",
+    text: "30秒で木の実を集めて高得点を狙おう。"
+  },
+  {
+    title: "アイテムの種類",
+    text: "木の実と雪玉には、それぞれ違う効果があります。"
+  },
+  {
+    title: "高得点のコツ",
+    text: "コンボをつなげるほど、ボーナス点が増えます。"
+  }
+];
+
 // ゲーム中に変わる値をまとめておきます。
 let score = 0;
 let timeLeft = GAME_SECONDS;
@@ -71,6 +88,7 @@ let bestCombo = 0;
 let comboTimer = 0;
 let playerX = 0;
 let isPlaying = false;
+let guidePageIndex = 0;
 let selectedDifficulty = "normal";
 let lastTime = 0;
 let spawnTimer = 0;
@@ -209,13 +227,24 @@ function updateDifficultyButtons() {
   });
 }
 
+function updateGuidePage() {
+  guidePages.forEach((page, index) => {
+    page.classList.toggle("hidden", index !== guidePageIndex);
+  });
+
+  messageTitle.textContent = GUIDE_PAGES[guidePageIndex].title;
+  messageText.textContent = GUIDE_PAGES[guidePageIndex].text;
+  guidePrevButton.disabled = guidePageIndex === 0;
+  guideNextButton.textContent = guidePageIndex === guidePages.length - 1 ? "難易度を選ぶ" : "次へ";
+}
+
 function showGuideScreen() {
-  messageTitle.textContent = "遊び方";
-  messageText.textContent = "シマエナガを動かして、木の実をたくさん集めよう。";
   startButton.textContent = "スタート";
   messagePanel.classList.remove("result", "hidden");
   guideContent.classList.remove("hidden");
   difficultyContent.classList.add("hidden");
+  guidePageIndex = 0;
+  updateGuidePage();
 }
 
 function showDifficultyScreen() {
@@ -226,6 +255,21 @@ function showDifficultyScreen() {
   guideContent.classList.add("hidden");
   difficultyContent.classList.remove("hidden");
   updateDifficultyButtons();
+}
+
+function goToNextGuidePage() {
+  if (guidePageIndex >= guidePages.length - 1) {
+    showDifficultyScreen();
+    return;
+  }
+
+  guidePageIndex += 1;
+  updateGuidePage();
+}
+
+function goToPreviousGuidePage() {
+  guidePageIndex = Math.max(0, guidePageIndex - 1);
+  updateGuidePage();
 }
 
 // コンボが伸びるほど、スコアが入る木の実に追加点を付けます。
@@ -662,7 +706,8 @@ difficultyButtons.forEach((button) => {
   });
 });
 
-guideNextButton.addEventListener("click", showDifficultyScreen);
+guidePrevButton.addEventListener("click", goToPreviousGuidePage);
+guideNextButton.addEventListener("click", goToNextGuidePage);
 startButton.addEventListener("click", startGame);
 
 // 画面サイズが変わっても、シマエナガが外に出ないようにします。

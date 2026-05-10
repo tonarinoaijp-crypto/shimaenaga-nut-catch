@@ -41,22 +41,36 @@
         <p id="messageText" class="message-text">雪玉をよけながら、30秒で高得点をめざしてね。</p>
 
         <div id="guideContent" class="guide-content">
-          <div class="guide-rules">
-            <p>30秒間で木の実を集めよう。雪玉に当たるとライフが減ります。</p>
-            <p>木の実を続けて取るとコンボ。ゲージが残っている間に次を取るとつながります。</p>
+          <div class="guide-page" data-guide-page="0">
+            <div class="guide-rules">
+              <p>制限時間は30秒。シマエナガを左右に動かして、落ちてくる木の実を集めよう。</p>
+              <p>雪玉に当たるとライフが減ります。ライフがなくなる前に高得点を狙ってね。</p>
+            </div>
           </div>
 
-          <div class="guide-items" aria-label="木の実の説明">
-            <div class="guide-item"><span class="guide-icon guide-acorn"></span><span>通常の木の実: +1点</span></div>
-            <div class="guide-item"><span class="guide-icon guide-golden"></span><span>金の木の実: +5点</span></div>
-            <div class="guide-item"><span class="guide-icon guide-rainbow"></span><span>虹色の木の実: +10点</span></div>
-            <div class="guide-item"><span class="guide-icon guide-heart"></span><span>ハート木の実: ライフ+1</span></div>
-            <div class="guide-item"><span class="guide-icon guide-clock"></span><span>時計木の実: 残り時間+5秒</span></div>
-            <div class="guide-item"><span class="guide-icon guide-fluffy"></span><span>ふわふわ木の実: 少しの間、無敵</span></div>
-            <div class="guide-item"><span class="guide-icon guide-snowball"></span><span>雪玉: ライフ-1、コンボ終了</span></div>
+          <div class="guide-page hidden" data-guide-page="1">
+            <div class="guide-items" aria-label="木の実の説明">
+              <div class="guide-item"><span class="guide-icon guide-acorn"></span><span>通常の木の実: +1点</span></div>
+              <div class="guide-item"><span class="guide-icon guide-golden"></span><span>金の木の実: +5点</span></div>
+              <div class="guide-item"><span class="guide-icon guide-rainbow"></span><span>虹色の木の実: +10点</span></div>
+              <div class="guide-item"><span class="guide-icon guide-heart"></span><span>ハート木の実: ライフ+1</span></div>
+              <div class="guide-item"><span class="guide-icon guide-clock"></span><span>時計木の実: 残り時間+5秒</span></div>
+              <div class="guide-item"><span class="guide-icon guide-fluffy"></span><span>ふわふわ木の実: 少しの間、無敵</span></div>
+              <div class="guide-item"><span class="guide-icon guide-snowball"></span><span>雪玉: ライフ-1、コンボ終了</span></div>
+            </div>
           </div>
 
-          <button id="guideNextButton" class="main-button" type="button">難易度を選ぶ</button>
+          <div class="guide-page hidden" data-guide-page="2">
+            <div class="guide-rules">
+              <p>高得点のコツはコンボ。木の実を取るとコンボゲージが満タンになります。</p>
+              <p>ゲージが残っている間に次の木の実を取るとコンボ継続。コンボが伸びるほどボーナス点が増えます。</p>
+            </div>
+          </div>
+
+          <div class="guide-nav">
+            <button id="guidePrevButton" class="sub-button" type="button">戻る</button>
+            <button id="guideNextButton" class="main-button" type="button">次へ</button>
+          </div>
         </div>
 
         <div id="difficultyContent" class="difficulty-content">
