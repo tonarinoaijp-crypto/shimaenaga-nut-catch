@@ -74,6 +74,10 @@ const GUIDE_PAGES = [
     text: "木の実と雪玉には、それぞれ違う効果があります。"
   },
   {
+    title: "評価ランク",
+    text: "ゲーム終了時、スコアに合わせて称号が出ます。"
+  },
+  {
     title: "高得点のコツ",
     text: "コンボをつなげるほど、ボーナス点が増えます。"
   }
@@ -373,16 +377,28 @@ function isHit(rectA, rectB) {
 
 // 点数に応じた評価コメントを返します。
 function getResultComment() {
-  if (score <= 5) {
-    return "まだ冬眠中";
+  if (score <= 50) {
+    return "おねむシマエナガ";
   }
 
-  if (score <= 15) {
+  if (score <= 99) {
+    return "並シマエナガ";
+  }
+
+  if (score <= 149) {
     return "木の実見習い";
   }
 
-  if (score <= 30) {
-    return "森の集め上手";
+  if (score <= 179) {
+    return "木の実集め名人";
+  }
+
+  if (score <= 199) {
+    return "森の人気者";
+  }
+
+  if (score <= 249) {
+    return "伝説のもふもふ";
   }
 
   return "神シマエナガ";
