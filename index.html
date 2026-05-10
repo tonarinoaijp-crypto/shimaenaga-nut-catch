@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>木の実キャッチ！シマエナガ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <h1>木の実キャッチ！シマエナガ</h1>
+
+    <section class="status-board" aria-label="ゲーム情報">
+      <div class="status-item">
+        <span class="status-label">スコア</span>
+        <span id="score" class="status-value">0</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">残り時間</span>
+        <span id="time" class="status-value">30</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">ライフ</span>
+        <span id="lives" class="status-value">♥♥♥</span>
+      </div>
+      <div class="status-item">
+        <span class="status-label">コンボ</span>
+        <span id="combo" class="status-value">0</span>
+      </div>
+    </section>
+
+    <section id="gameArea" class="game-area" aria-label="ゲーム画面">
+      <div class="snow-layer" aria-hidden="true"></div>
+      <div id="effectBadge" class="effect-badge hidden" aria-live="polite"></div>
+      <div class="combo-gauge" aria-label="コンボ猶予ゲージ">
+        <div id="comboGaugeFill" class="combo-gauge-fill"></div>
+      </div>
+
+      <div id="messagePanel" class="message-panel">
+        <p id="messageTitle" class="message-title">木の実を集めよう</p>
+        <p id="messageText" class="message-text">雪玉をよけながら、30秒で高得点をめざしてね。</p>
+        <div id="difficultySelect" class="difficulty-select" aria-label="難易度選択">
+          <button class="difficulty-button" type="button" data-difficulty="easy">やさしい</button>
+          <button class="difficulty-button active" type="button" data-difficulty="normal">ふつう</button>
+          <button class="difficulty-button" type="button" data-difficulty="hard">むずかしい</button>
+        </div>
+        <button id="startButton" class="main-button" type="button">スタート</button>
+      </div>
+
+      <div id="player" class="player" aria-label="シマエナガ">
+        <img class="player-image" src="shimaenaga-player.png" alt="">
+      </div>
+    </section>
+
+    <section class="mobile-controls" aria-label="スマホ操作">
+      <button id="leftButton" class="control-button" type="button">左</button>
+      <button id="rightButton" class="control-button" type="button">右</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
