@@ -39,12 +39,34 @@
       <div id="messagePanel" class="message-panel">
         <p id="messageTitle" class="message-title">木の実を集めよう</p>
         <p id="messageText" class="message-text">雪玉をよけながら、30秒で高得点をめざしてね。</p>
-        <div id="difficultySelect" class="difficulty-select" aria-label="難易度選択">
-          <button class="difficulty-button" type="button" data-difficulty="easy">やさしい</button>
-          <button class="difficulty-button active" type="button" data-difficulty="normal">ふつう</button>
-          <button class="difficulty-button" type="button" data-difficulty="hard">むずかしい</button>
+
+        <div id="guideContent" class="guide-content">
+          <div class="guide-rules">
+            <p>30秒間で木の実を集めよう。雪玉に当たるとライフが減ります。</p>
+            <p>木の実を続けて取るとコンボ。ゲージが残っている間に次を取るとつながります。</p>
+          </div>
+
+          <div class="guide-items" aria-label="木の実の説明">
+            <div class="guide-item"><span class="guide-icon guide-acorn"></span><span>通常の木の実: +1点</span></div>
+            <div class="guide-item"><span class="guide-icon guide-golden"></span><span>金の木の実: +5点</span></div>
+            <div class="guide-item"><span class="guide-icon guide-rainbow"></span><span>虹色の木の実: +10点</span></div>
+            <div class="guide-item"><span class="guide-icon guide-heart"></span><span>ハート木の実: ライフ+1</span></div>
+            <div class="guide-item"><span class="guide-icon guide-clock"></span><span>時計木の実: 残り時間+5秒</span></div>
+            <div class="guide-item"><span class="guide-icon guide-fluffy"></span><span>ふわふわ木の実: 少しの間、無敵</span></div>
+            <div class="guide-item"><span class="guide-icon guide-snowball"></span><span>雪玉: ライフ-1、コンボ終了</span></div>
+          </div>
+
+          <button id="guideNextButton" class="main-button" type="button">難易度を選ぶ</button>
         </div>
-        <button id="startButton" class="main-button" type="button">スタート</button>
+
+        <div id="difficultyContent" class="difficulty-content">
+          <div id="difficultySelect" class="difficulty-select" aria-label="難易度選択">
+            <button class="difficulty-button" type="button" data-difficulty="easy">やさしい</button>
+            <button class="difficulty-button active" type="button" data-difficulty="normal">ふつう</button>
+            <button class="difficulty-button" type="button" data-difficulty="hard">むずかしい</button>
+          </div>
+          <button id="startButton" class="main-button" type="button">スタート</button>
+        </div>
       </div>
 
       <div id="player" class="player" aria-label="シマエナガ">

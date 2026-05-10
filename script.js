@@ -10,6 +10,9 @@ const comboGaugeFill = document.getElementById("comboGaugeFill");
 const messagePanel = document.getElementById("messagePanel");
 const messageTitle = document.getElementById("messageTitle");
 const messageText = document.getElementById("messageText");
+const guideContent = document.getElementById("guideContent");
+const difficultyContent = document.getElementById("difficultyContent");
+const guideNextButton = document.getElementById("guideNextButton");
 const startButton = document.getElementById("startButton");
 const leftButton = document.getElementById("leftButton");
 const rightButton = document.getElementById("rightButton");
@@ -206,6 +209,25 @@ function updateDifficultyButtons() {
   });
 }
 
+function showGuideScreen() {
+  messageTitle.textContent = "遊び方";
+  messageText.textContent = "シマエナガを動かして、木の実をたくさん集めよう。";
+  startButton.textContent = "スタート";
+  messagePanel.classList.remove("result", "hidden");
+  guideContent.classList.remove("hidden");
+  difficultyContent.classList.add("hidden");
+}
+
+function showDifficultyScreen() {
+  messageTitle.textContent = "難易度を選ぼう";
+  messageText.textContent = "遊びやすさに合わせて選んでからスタートしてね。";
+  startButton.textContent = "スタート";
+  messagePanel.classList.remove("result", "hidden");
+  guideContent.classList.add("hidden");
+  difficultyContent.classList.remove("hidden");
+  updateDifficultyButtons();
+}
+
 // コンボが伸びるほど、スコアが入る木の実に追加点を付けます。
 function getComboBonus(currentCombo) {
   if (currentCombo >= 20) {
@@ -385,6 +407,8 @@ function endGame() {
   messageText.textContent = `難易度は「${DIFFICULTIES[selectedDifficulty].label}」。スコアは ${score} 点、最高コンボは ${bestCombo}。`;
   startButton.textContent = "もう一度遊ぶ";
   messagePanel.classList.add("result");
+  guideContent.classList.add("hidden");
+  difficultyContent.classList.remove("hidden");
   messagePanel.classList.remove("hidden");
 }
 
@@ -638,6 +662,7 @@ difficultyButtons.forEach((button) => {
   });
 });
 
+guideNextButton.addEventListener("click", showDifficultyScreen);
 startButton.addEventListener("click", startGame);
 
 // 画面サイズが変わっても、シマエナガが外に出ないようにします。
@@ -649,3 +674,4 @@ window.addEventListener("resize", () => {
 
 updateDifficultyButtons();
 resetGame();
+showGuideScreen();
