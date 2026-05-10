@@ -378,33 +378,54 @@ function isHit(rectA, rectB) {
   );
 }
 
-// 点数に応じた評価コメントを返します。
-function getResultComment() {
+// 点数に応じた評価ランクと一言コメントを返します。
+function getResultRank() {
   if (score <= 50) {
-    return "おねむシマエナガ";
+    return {
+      title: "おねむシマエナガ",
+      comment: "今日はちょっと眠かったみたい…"
+    };
   }
 
   if (score <= 99) {
-    return "並シマエナガ";
+    return {
+      title: "並シマエナガ",
+      comment: "まずまずの木の実集めです"
+    };
   }
 
   if (score <= 149) {
-    return "木の実見習い";
+    return {
+      title: "木の実見習い",
+      comment: "だんだんコツをつかんできた！"
+    };
   }
 
   if (score <= 179) {
-    return "木の実集め名人";
+    return {
+      title: "木の実集め名人",
+      comment: "森でも評判の集め上手！"
+    };
   }
 
   if (score <= 199) {
-    return "森の人気者";
+    return {
+      title: "森の人気者",
+      comment: "みんなが見守る人気者！"
+    };
   }
 
   if (score <= 249) {
-    return "伝説のもふもふ";
+    return {
+      title: "伝説のもふもふ",
+      comment: "その動き、もはや伝説級"
+    };
   }
 
-  return "神シマエナガ";
+  return {
+    title: "神シマエナガ",
+    comment: "木の実に愛されたシマエナガ"
+  };
 }
 
 // 画面上の落下物や演出をすべて消します。
@@ -466,8 +487,9 @@ function endGame() {
   updateComboGauge();
   playSound("end");
 
-  messageTitle.textContent = getResultComment();
-  messageText.textContent = `難易度は「${DIFFICULTIES[selectedDifficulty].label}」。スコアは ${score} 点、最高コンボは ${bestCombo}。`;
+  const resultRank = getResultRank();
+  messageTitle.textContent = resultRank.title;
+  messageText.textContent = `${resultRank.comment} 難易度は「${DIFFICULTIES[selectedDifficulty].label}」。スコアは ${score} 点、最高コンボは ${bestCombo}。`;
   startButton.textContent = "もう一度遊ぶ";
   messagePanel.classList.add("result");
   guideContent.classList.add("hidden");
